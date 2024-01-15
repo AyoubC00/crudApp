@@ -21,9 +21,3 @@ Route::resource('users', UsersController::class);
 Route::get("/details", function () {
     return view("details");
 });
-
-
-Route::get("/add", function () {
-    return view("form");
-});
-

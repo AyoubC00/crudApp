@@ -32,11 +32,11 @@ class UsersController extends Controller
         $user = new Users();
         $validated = $request->validate(
             [
-                "fname" => "required",
-                "lname" => "required",
-                "email" => "required",
-                "address" => "required",
-                "telephone" => "required",
+                "fname" => "required|regex:/[^\W_]{3,}/",
+                "lname" => "required|regex:/[^\W_]{3,}/",
+                "email" => "required|email|unique:users,email",
+                "address" => "required|regex:/[^\W_]{3,}/",
+                "telephone" => "required|regex:/[^\W_]{3,}/",
                 "image" => "required|image|mimes:jpeg,jpg,png|max:1024"
             ]
         );
@@ -65,17 +65,41 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Users $users)
+    public function edit(Users $users, $id)
     {
-        //
+
+        $user = Users::find($id);
+        return view("edit", compact("user"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Users $users)
+    public function update(Request $request, Users $users, $id)
     {
-        //
+        $user = Users::find($id);
+        $validated = $request->validate(
+            [
+                "fname" => "required|regex:/[^\W_]{3,}/",
+                "lname" => "required|regex:/[^\W_]{3,}/",
+                "email" => "required|email",
+                "address" => "required|regex:/[^\W_]{3,}/",
+                "telephone" => "required|regex:/[^\W_]{3,}/",
+                "image" => "image|mimes:jpeg,jpg,png|max:1024"
+            ]
+        );
+        if (request()->hasFile("image")) {
+            $imgPath = request()->file("image")->store("images", "public");
+            $validated["image"] = url("storage/" . $imgPath);
+            $user->image = $validated["image"];
+        }
+        $user->fname = $validated["fname"];
+        $user->lname = $validated["lname"];
+        $user->email = $validated["email"];
+        $user->address = $validated["address"];
+        $user->telephone = $validated["telephone"];
+        $user->save($validated);
+        return redirect()->route("users.index")->with("success", "User added successfully!");
     }
 
     /**

@@ -26,7 +26,11 @@
         <tbody>
             @if(!@empty($users))
             @foreach($users as $user)
-            <tr class="[&>td]:py-2 border-b last:border-b-0 hover:bg-gray-50 hover:cursor-pointer font-light text-sm">
+            <tr
+                class="[&>td]:py-2 border-b last:border-b-0 hover:bg-gray-50 hover:cursor-pointer font-light text-sm relative">
+                <td class="absolute left-0 w-full h-full">
+                    <a href="{{route('users.edit', $user['id'])}}" class="block w-full h-full"></a>
+                </td>
                 <td class="flex items-center gap-6 ps-6 font-normal">
                     <img class="h-10 rounded-full w-10" src={{$user->image}} alt="User image">
                     {{$user['name']}}

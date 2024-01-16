@@ -13,5 +13,11 @@
     html
     {
         font-family: "Inter";
+        color: theme("colors.slate.700")
     }
+}
+
+tr *:not(td)
+{
+    pointer-events: none;
 }

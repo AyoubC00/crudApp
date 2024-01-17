@@ -1,4 +1,4 @@
-<nav class="bg-slate-900 flex py-3">
+<nav id="navbar" class="bg-slate-900 flex py-3">
     <div class="w-3/4 mx-auto text-slate-50 flex items-center">
         <a href="/" class="me-16">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

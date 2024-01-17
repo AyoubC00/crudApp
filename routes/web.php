@@ -15,7 +15,22 @@ use Illuminate\Support\Facades\View;
 */
 
 Route::get('/', function () {
-    return View::make('layout');
+    return View::make('layouts.index');
 });
 
-Route::View('users/{id}', 'user');
+Route::get("/users", function () {
+    return View::make("layouts.users");
+});
+
+Route::get("/users/create", function () {
+    return View::make("layouts.createUser");
+});
+
+
+Route::get("/users/{id}", function () {
+    return View::make("layouts.user");
+});
+
+Route::get("/users/{id}/edit", function () {
+    return View::make("layouts.editUser");
+});

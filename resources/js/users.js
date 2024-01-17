@@ -1,10 +1,10 @@
-const handleRowClick = ({ target }) => 
+const handleRowClick = async ({ target }) => 
 {
     const record = target.closest("tr");
     if (record)
     {
         const endPoint = encodeURI(`users/${record.dataset["userId"]}`);
-        fetch(endPoint);
+        location.href = endPoint;
     }
 }
 

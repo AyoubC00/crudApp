@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody id="usersTable"
-        class="[&>tr]:border-b [&>tr>td]:py-2 [&>tr>td]:px-6 [&>tr>td]:font-light last:[&>tr>td]:text-end">
+        class="[&>tr]:border-b [&>tr:hover]:bg-slate-50 cursor-pointer [&>tr>td]:py-2 [&>tr>td]:px-6 [&>tr>td]:font-light last:[&>tr>td]:text-end">
         <tr data-user-id="1">
             <td>
                 <img src="https://unsplash.it/300/400" alt="Avatar"
